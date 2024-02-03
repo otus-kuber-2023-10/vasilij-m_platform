@@ -9,3 +9,7 @@ vasilij-m Platform repository
 
 [kubernetes-controllers](./docs/kubernetes-controllers.md)
 
+## 3. Настройка сетевой связности для приложения. Добавление service, ingress. Установка MetalLB
+
+[kubernetes-networks](./docs/kubernetes-networks.md)
+
