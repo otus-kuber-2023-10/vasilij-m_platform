@@ -1,0 +1,5 @@
+redis:
+  fullnameOverride: redis-cart
+  architecture: standalone
+  auth:
+    enabled: false

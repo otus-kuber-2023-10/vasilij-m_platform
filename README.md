@@ -21,3 +21,6 @@ vasilij-m Platform repository
 
 [kubernetes-security](./docs/kubernetes-security.md)
 
+## 6. Шаблонизация манифестов приложения, использование Helm, kustomize, helmfile, jsonnet. Установка community Helm charts
+
+[kubernetes-templating](./docs/kubernetes-templating.md)

@@ -1,0 +1,15 @@
+## Ingress for load balancer
+ingress:
+  enabled: true
+  annotations:
+    kubernetes.io/ingress.class: nginx
+    kubernetes.io/tls-acme: "true"
+    cert-manager.io/cluster-issuer: letsencrypt-prod # or letsencrypt-staging for testing
+  hosts:
+    - name: chartmuseum.prod.vasilijm.ru
+      path: /
+      tls: true
+      tlsSecret: chartmuseum.prod.vasilijm.ru
+env:
+  open:
+    DISABLE_API: false

@@ -1,0 +1,22 @@
+image:
+  tag: v0.8.0
+
+replicas: 1
+
+service:
+  type: NodePort
+  portName: http
+  port: 80
+  targetPort: 8080
+  nodePort: 31000
+
+ingress:
+  annotations:
+    kubernetes.io/tls-acme: "true"
+    cert-manager.io/cluster-issuer: letsencrypt-prod # or letsencrypt-staging for testing
+  className: nginx
+  hosts:
+    - name: shop.prod.vasilijm.ru
+      path: /
+      tls: true
+      tlsSecret: shop.prod.vasilijm.ru
