@@ -16,3 +16,8 @@ vasilij-m Platform repository
 ## 4. Работа с PVC, PV, хранение данных внутри k8s
 
 [kubernetes-volumes](./docs/kubernetes-volumes.md)
+
+## 5. Настройка сервисных аккаунтов и ограничение прав для них
+
+[kubernetes-security](./docs/kubernetes-security.md)
+
