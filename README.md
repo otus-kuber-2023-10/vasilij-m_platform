@@ -5,3 +5,7 @@ vasilij-m Platform repository
 
 [kubernetes-intro](./docs/kubernetes-intro.md)
 
+## 2. Kubernetes controllers. ReplicaSet, Deployment, DaemonSet
+
+[kubernetes-controllers](./docs/kubernetes-controllers.md)
+
