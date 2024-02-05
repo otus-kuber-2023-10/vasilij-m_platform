@@ -1,0 +1,20 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: app-canary
+  namespace: canary
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: app-canary
+  template:
+    metadata:
+      name: app-canary
+      labels:
+        app: app-canary
+    spec:
+      containers:
+        - name: app-canary
+          image: nginxdemos/nginx-hello:plain-text

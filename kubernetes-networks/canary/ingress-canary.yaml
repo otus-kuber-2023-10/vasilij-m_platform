@@ -1,0 +1,23 @@
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: canary
+  namespace: canary
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /$2
+    nginx.ingress.kubernetes.io/canary: "true"
+    nginx.ingress.kubernetes.io/canary-by-header: "canary"
+    nginx.ingress.kubernetes.io/canary-by-header-pattern: ".*"
+spec:
+  ingressClassName: nginx
+  rules:
+    - http:
+        paths:
+          - path: /canary(/|$)(.*)
+            pathType: ImplementationSpecific
+            backend:
+              service:
+                name: app-canary
+                port:
+                  number: 8080
