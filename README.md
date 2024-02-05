@@ -13,3 +13,6 @@ vasilij-m Platform repository
 
 [kubernetes-networks](./docs/kubernetes-networks.md)
 
+## 4. Работа с PVC, PV, хранение данных внутри k8s
+
+[kubernetes-volumes](./docs/kubernetes-volumes.md)
