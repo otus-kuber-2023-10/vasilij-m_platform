@@ -1,0 +1,36 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  namespace: default
+  name: restore-{{ name }}-job
+spec:
+  backoffLimit: 2
+  template:
+    metadata:
+      name: restore-{{ name }}-job
+    spec:
+      restartPolicy: OnFailure
+      containers:
+      - name: backup
+        image: mysql:5.7
+        imagePullPolicy: IfNotPresent
+        command:
+        - /bin/sh
+        - -c
+        args:
+        - |
+          sleep 5;
+          if [[ -f /backup-{{ name }}-pv/{{ name }}-dump.sql ]]; then 
+              echo 'Restoring from backup...';
+              ls -l /backup-{{ name }}-pv/;
+              mysql -uroot -h {{ name }} -p{{ password }} {{ database }}< /backup-{{ name }}-pv/{{ name }}-dump.sql
+          else
+              echo 'No backup found'
+          fi
+        volumeMounts:
+        - name: backup-data
+          mountPath: /backup-{{ name }}-pv
+      volumes:
+      - name: backup-data
+        persistentVolumeClaim:
+          claimName: backup-{{ name }}-pvc

@@ -24,3 +24,8 @@ vasilij-m Platform repository
 ## 6. Шаблонизация манифестов приложения, использование Helm, kustomize, helmfile, jsonnet. Установка community Helm charts
 
 [kubernetes-templating](./docs/kubernetes-templating.md)
+
+## 7. Описание собственного CRD, использование open-source операторов
+
+[kubernetes-operators](./docs/kubernetes-operators.md)
+
