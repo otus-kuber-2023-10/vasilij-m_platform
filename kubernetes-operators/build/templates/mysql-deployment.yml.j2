@@ -1,0 +1,40 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ name }}
+spec:
+  selector:
+    matchLabels:
+      app: {{ name }}
+  template:
+    metadata:
+      labels:
+        app: {{ name }}
+    spec:
+      containers:
+      - image: {{ image }}
+        name: {{ name }}
+        args:
+        - "--ignore-db-dir=lost+found"
+        env:
+        - name: MYSQL_ROOT_PASSWORD # так делать не нужно, тут лучше secret
+          value: {{ password }}
+        - name: MYSQL_DATABASE
+          value: {{ database }}
+        ports:
+        - containerPort: 3306
+          name: mysql
+        readinessProbe:
+          exec:
+            command: ["mysql", "-uroot", "-p{{ password }}", "-h", "127.0.0.1", "-e", "SELECT 1"]
+          failureThreshold: 12
+          initialDelaySeconds: 5
+          periodSeconds: 5
+          timeoutSeconds: 5
+        volumeMounts:
+        - name: data
+          mountPath: /var/lib/mysql
+      volumes:
+      - name: data
+        persistentVolumeClaim:
+          claimName: {{ name }}-pvc

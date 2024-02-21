@@ -1,0 +1,7 @@
+resources:
+  - namespace.yaml
+  - ../../base
+namePrefix: prod-
+namespace: hipster-shop-prod
+commonLabels:
+  env: hipster-shop-prod

@@ -16,3 +16,16 @@ vasilij-m Platform repository
 ## 4. Работа с PVC, PV, хранение данных внутри k8s
 
 [kubernetes-volumes](./docs/kubernetes-volumes.md)
+
+## 5. Настройка сервисных аккаунтов и ограничение прав для них
+
+[kubernetes-security](./docs/kubernetes-security.md)
+
+## 6. Шаблонизация манифестов приложения, использование Helm, kustomize, helmfile, jsonnet. Установка community Helm charts
+
+[kubernetes-templating](./docs/kubernetes-templating.md)
+
+## 7. Описание собственного CRD, использование open-source операторов
+
+[kubernetes-operators](./docs/kubernetes-operators.md)
+

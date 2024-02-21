@@ -1,0 +1,28 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  namespace: default
+  name: backup-{{ name }}-job
+  labels:
+    usage: backup-{{ name }}-job
+spec:
+  template:
+    metadata:
+      name: backup-{{ name }}-cronjob
+    spec:
+      restartPolicy: OnFailure
+      containers:
+      - name: backup-{{ name }}
+        image: {{ image }}
+        imagePullPolicy: IfNotPresent
+        command:
+        - /bin/sh
+        - -c
+        - "mysqldump -uroot -h {{ name }} -p{{ password }} --port 3306 {{ database }}  > /backup-{{ name }}-pv/{{ name }}-dump.sql"
+        volumeMounts:
+        - name: backup-data
+          mountPath: /backup-{{ name }}-pv
+      volumes:
+      - name: backup-data
+        persistentVolumeClaim:
+          claimName: backup-{{ name }}-pvc
