@@ -1,0 +1,46 @@
+testFramework:
+  enabled: false
+
+ingress:
+  enabled: true
+  ingressClassName: nginx
+  path: /
+  pathType: Prefix
+  hosts:
+    - grafana.nginx.local
+
+persistence:
+  type: pvc
+  enabled: true
+  size: 2Gi
+
+adminUser: admin
+adminPassword: admin # не будем усложнять :)
+
+datasources:
+  datasources.yaml:
+    apiVersion: 1
+    datasources:
+      - name: Prometheus
+        type: prometheus
+        url: http://prometheus-server.monitoring.svc.cluster.local
+        access: proxy
+        isDefault: true
+
+dashboardProviders:
+  dashboardproviders.yaml:
+    apiVersion: 1
+    providers:
+      - name: nginx
+        orgId: 1
+        folder: nginx
+        type: file
+        disableDeletion: true
+        editable: true
+        options:
+          path: /var/lib/grafana/dashboards/nginx
+
+dashboards:
+  nginx:
+    nginx-status:
+      file: dashboards/nginx-prometheus-exporter.json

@@ -29,3 +29,6 @@ vasilij-m Platform repository
 
 [kubernetes-operators](./docs/kubernetes-operators.md)
 
+## 8. Мониторинг приложения в кластере
+
+[kubernetes-monitoring](./docs/kubernetes-monitoring.md)

@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: nginx-with-status
+  name: nginx-with-status
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: nginx-with-status
+  template:
+    metadata:
+      labels:
+        app: nginx-with-status
+    spec:
+      containers:
+        - image: vasiilij/nginx-with-status:0.1.0
+          name: nginx-with-status
+          ports:
+            - name: http
+              containerPort: 8080
+        - image: nginx/nginx-prometheus-exporter:1.1.0
+          name: nginx-prometheus-exporter
+          args:
+            - "--nginx.scrape-uri=http://localhost:8080/basic_status"
+          ports:
+            - name: metrics
+              containerPort: 9113
